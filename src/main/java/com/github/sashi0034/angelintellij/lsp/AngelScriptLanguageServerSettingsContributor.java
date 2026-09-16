@@ -39,12 +39,12 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
                             "title": "AngelScript: Suppress analyzer errors"
                         },
                         "angelscript.includePath": {
-                            "type": "string[]",
+                            "type": "[]",
                             "title": "AngelScript: additional include paths",
                             "description": "places to search for files to include"
                         },
                         "angelscript.forceIncludePredefined": {
-                            "type": "string[]",
+                            "type": "[]",
                             "title": "AngelScript: files to force-include",
                             "description": "list of files to be included before compiling any other file"
                         },
@@ -53,16 +53,6 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
                             "default": "false",
                             "description": "Tells the language server to combine all your files into one big file before compiling"
                         },
-                      "angelscript.default-string-type": {
-                        "type": "string",
-                        "title": "AngelScript: Default string type",
-                        "description": "Which type to use for strings. Should probably be `string` or `String`"
-                      },
-                      "angelscript.builtin-array-type": {
-                        "type": "string",
-                        "title": "AngelScript: Default array type",
-                        "description": "Which type to use for builtin arrays"
-                      },
                     }
                   }""";
         }
