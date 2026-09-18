@@ -36,7 +36,8 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
                     "properties": {
                         "angelscript.suppressAnalyzerErrors": {
                             "type": "boolean",
-                            "title": "AngelScript: Suppress analyzer errors"
+                            "title": "AngelScript: Suppress analyzer errors",
+                            "default": true
                         },
                         "angelscript.includePath": {
                             "type": "[]",
@@ -53,6 +54,80 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
                             "default": "false",
                             "description": "Tells the language server to combine all your files into one big file before compiling"
                         },
+                        "angelscript.hoistEnumParentScope": {
+                            "type" "boolean",
+                            "default": false
+                        },
+                        "angelscript.explicitPropertyAccessor": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "angelscript.allowUnicodeIdentifiers": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "angelscript.supportsForEach": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "angelscript.characterLiterals": {
+                            "type": boolean,
+                            "default": false
+                        },
+                        "angelscript.supportsTypedEnumerations": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "angelscript.supportsDigitSeparators": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "angelscript.builtinStringType": {
+                            "type": "string",
+                            "default": "string",
+                            "description": "the AngelScript type name for the default string type"
+                        },
+                        "angelscript.builtinArrayType": {
+                            "type": "string",
+                            "default": "array"
+                        },
+                        "angelscript.definedSymbols": { 
+                            "type": "array",
+                            "default": []
+                        },
+                        "angelscript.completion.builtinKeywords": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "angelscript.completion.snippets": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "angelscript.files.angelScript": {
+                            "type": "array",
+                            "default": "[\".as\"]",
+                            "description": "file extensions of your AngelScript files"
+                        },
+                        "angelscript.files.exclude": {
+                            "type": "array",
+                            "default": "[]"
+                        },
+                        "angelscript.formatter.maxBlankLines": {
+                            "type": "number",
+                            "default": "1"
+                        },
+                        "angelscript.formatter.indentSpaces": {
+                            "type": "number",
+                            "default": "4"
+                        },
+                        "angelscript.formatter.useTabIndent": {
+                            "type": "boolean",
+                            "default": "false"
+                        },
+                        "angelscript.trace.server": {
+                            "type": "string",
+                            "default": "off"
+                        }
                     }
                   }""";
         }
