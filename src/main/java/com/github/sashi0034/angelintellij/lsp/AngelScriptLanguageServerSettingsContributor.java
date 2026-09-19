@@ -14,16 +14,33 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
         public String getDefaultConfigurationContent() {
             // language=json
             return """
-                    {
-                      "angelscript.trace.server": "off",
-                      "angelscript.content-intellisense": false,
-                      "angelscript.updateImportsOnFileMove.enabled": false
-                    }""";
+                  {
+                    "angelScript.suppressAnalyzerErrors": false,
+                    "angelScript.includePath": [],
+                    "angelScript.forceIncludePredefined": [],
+                    "angelScript.implicitMutualInclusion": false,
+                    "angelScript.hoistEnumParentScope": false,
+                    "angelScript.explicitPropertyAccessor": false,
+                    "angelScript.allowUnicodeIdentifiers": false,
+                    "angelScript.supportsForEach": true,
+                    "angelScript.characterLiterals": false,
+                    "angelScript.suppodtsDigitSeparators": false,
+                    "angelScript.builtinStringType": "string",
+                    "angelScript.builtinArrayType": "array",
+                    "angelScript.definedSymbols": [],
+                    "angelScript.completion.builtinKeywords": true,
+                    "angelScript.completion.snippets": true,
+                    "angelScript.files.angelScript": ["*.as"],
+                    "angelScript.formatter.maxBlankLines": 1,
+                    "angelScript.formatter.indentSpaces": 4,
+                    "angelScript.formatter.useTabIndent": false,
+                    "angelScript.trace.server": false
+                  }""";
         }
 
         @Override
         public String getDefaultConfigurationSchemaContent() {
-            // sheme generate by hand from `server/src/core/settings.js` in the language server
+            // schema generate by hand from `server/src/core/settings.js` in the language server
             // language=json
             return """                  
                   {
@@ -34,99 +51,88 @@ public class AngelScriptLanguageServerSettingsContributor extends LanguageServer
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
-                        "angelscript.suppressAnalyzerErrors": {
+                        "angelScript.suppressAnalyzerErrors": {
                             "type": "boolean",
-                            "title": "AngelScript: Suppress analyzer errors",
-                            "default": true
+                            "title": "AngelScript: Suppress analyzer errors"
                         },
-                        "angelscript.includePath": {
-                            "type": "[]",
+                        "angelScript.includePath": {
+                            "type": "array",
                             "title": "AngelScript: additional include paths",
                             "description": "places to search for files to include"
                         },
-                        "angelscript.forceIncludePredefined": {
-                            "type": "[]",
+                        "angelScript.forceIncludePredefined": {
+                            "type": "array",
                             "title": "AngelScript: files to force-include",
                             "description": "list of files to be included before compiling any other file"
                         },
-                        "angelscript.implicitMutualInclusion": {
+                        "angelScript.implicitMutualInclusion": {
                             "type": "boolean",
-                            "default": "false",
                             "description": "Tells the language server to combine all your files into one big file before compiling"
                         },
-                        "angelscript.hoistEnumParentScope": {
-                            "type" "boolean",
-                            "default": false
+                        "angelScript.hoistEnumParentScope": {
+                            "type": "boolean"
                         },
-                        "angelscript.explicitPropertyAccessor": {
-                            "type": "boolean",
-                            "default": false
+                        "angelScript.explicitPropertyAccessor": {
+                            "type": "boolean"
                         },
-                        "angelscript.allowUnicodeIdentifiers": {
-                            "type": "boolean",
-                            "default": false
+                        "angelScript.allowUnicodeIdentifiers": {
+                            "type": "boolean"
                         },
-                        "angelscript.supportsForEach": {
-                            "type": "boolean",
-                            "default": true
+                        "angelScript.supportsForEach": {
+                            "type": "boolean"
                         },
-                        "angelscript.characterLiterals": {
-                            "type": boolean,
-                            "default": false
+                        "angelScript.characterLiterals": {
+                            "type": "boolean"
                         },
-                        "angelscript.supportsTypedEnumerations": {
-                            "type": "boolean",
-                            "default": false
+                        "angelScript.supportsTypedEnumerations": {
+                            "type": "boolean"
                         },
-                        "angelscript.supportsDigitSeparators": {
-                            "type": "boolean",
-                            "default": false
+                        "angelScript.supportsDigitSeparators": {
+                            "type": "boolean"
                         },
-                        "angelscript.builtinStringType": {
+                        "angelScript.builtinStringType": {
                             "type": "string",
-                            "default": "string",
                             "description": "the AngelScript type name for the default string type"
                         },
-                        "angelscript.builtinArrayType": {
-                            "type": "string",
-                            "default": "array"
+                        "angelScript.builtinArrayType": {
+                            "type": "string"
+                          },
+                        "angelScript.definedSymbols": {
+                            "type": "array"
                         },
-                        "angelscript.definedSymbols": { 
-                            "type": "array",
-                            "default": []
-                        },
-                        "angelscript.completion.builtinKeywords": {
+                        "angelScript.completion.builtinKeywords": {
                             "type": "boolean",
                             "default": true
                         },
-                        "angelscript.completion.snippets": {
+                        "angelScript.completion.snippets": {
                             "type": "boolean",
                             "default": true
                         },
-                        "angelscript.files.angelScript": {
+                        "angelScript.files.angelScript": {
                             "type": "array",
-                            "default": "[\".as\"]",
                             "description": "file extensions of your AngelScript files"
                         },
-                        "angelscript.files.exclude": {
-                            "type": "array",
-                            "default": "[]"
+                        "angelScript.files.exclude": {
+                            "type": "array"
                         },
-                        "angelscript.formatter.maxBlankLines": {
-                            "type": "number",
-                            "default": "1"
+                        "angelScript.formatter.maxBlankLines": {
+                            "type": "integer",
+                            "minimum": 0
                         },
-                        "angelscript.formatter.indentSpaces": {
-                            "type": "number",
-                            "default": "4"
+                        "angelScript.formatter.indentSpaces": {
+                            "type": "integer",
+                            "minimum": 0
                         },
-                        "angelscript.formatter.useTabIndent": {
-                            "type": "boolean",
-                            "default": "false"
+                        "angelScript.formatter.useTabIndent": {
+                            "type": "boolean"
                         },
-                        "angelscript.trace.server": {
+                        "angelScript.trace.server": {
                             "type": "string",
-                            "default": "off"
+                            "enum": [
+                              "off",
+                              "messages",
+                              "verbose"
+                            ]
                         }
                     }
                   }""";
