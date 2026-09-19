@@ -19,6 +19,12 @@ kotlin {
     jvmToolchain(17)
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 // Configure project's dependencies
 repositories {
     mavenCentral()
