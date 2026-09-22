@@ -1,6 +1,6 @@
-package com.github.sashi0034.angelintellij.language;
+package com.sarahshandcraftedentertainment.angelintellij.language;
 
-import com.github.sashi0034.angelintellij.psi.AngelScriptTokenTypes;
+import psi.com.sarahshandcraftedentertainment.angelintellij.AngelScriptTokenTypes;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.TokenType;

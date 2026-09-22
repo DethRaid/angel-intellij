@@ -1,16 +1,16 @@
 {
   // ---------- Grammar‑Kit settings ----------
-  parserClass = "com.github.sashi0034.angelintellij.parser.AngelScriptParser"
+  parserClass = "parser.com.sarahshandcraftedentertainment.angelintellij.AngelScriptParser"
   extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 
   psiClassPrefix = "AngelScript"
   psiImplClassSuffix = "Impl"
-  psiPackage = "com.github.sashi0034.angelintellij.psi"
-  psiImplPackage = "com.github.sashi0034.angelintellij.psi.impl"
+  psiPackage = "com.sarahshandcraftedentertainment.angelintellij.psi"
+  psiImplPackage = "com.sarahshandcraftedentertainment.angelintellij.psi.impl"
 
-  elementTypeHolderClass = "com.github.sashi0034.angelintellij.psi.AngelScriptTokenTypes"
-  elementTypeClass = "com.github.sashi0034.angelintellij.psi.AngelScriptElementType"
-  tokenTypeClass = "com.github.sashi0034.angelintellij.psi.AngelScriptTokenType"
+  elementTypeHolderClass = "psi.com.sarahshandcraftedentertainment.angelintellij.AngelScriptTokenTypes"
+  elementTypeClass = "psi.com.sarahshandcraftedentertainment.angelintellij.AngelScriptElementType"
+  tokenTypeClass = "psi.com.sarahshandcraftedentertainment.angelintellij.AngelScriptTokenType"
 }
 
 // ──────────────── entry point ────────────────

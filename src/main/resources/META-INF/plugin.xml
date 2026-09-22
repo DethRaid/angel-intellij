@@ -1,8 +1,8 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.sashi0034.angelintellij</id>
-    <name>AngelScript Language Server</name>
-    <vendor url="https://github.com/sashi0034">sashi0034</vendor>
+    <id>com.sarahshandcraftedentertainment.angelintellij</id>
+    <name>AngelScript</name>
+    <vendor url="https://sarahshandcraftedentertainment.com">sarah's handcrafted entertainment</vendor>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.redhat.devtools.lsp4ij</depends>
@@ -10,41 +10,41 @@
     <!--FIXME    <resource-bundle>messages.MyBundle</resource-bundle>-->
 
     <extensions defaultExtensionNs="com.intellij">
-        <!--FIXME        <toolWindow factoryClass="com.github.sashi0034.angelintellij.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
+        <!--FIXME        <toolWindow factoryClass="toolWindow.com.sarahshandcraftedentertainment.angelintellij.MyToolWindowFactory" id="MyToolWindow"/>-->
 
-        <postStartupActivity implementation="com.github.sashi0034.angelintellij.ValidationStartupActivity"/>
+        <postStartupActivity implementation="com.sarahshandcraftedentertainment.angelintellij.ValidationStartupActivity"/>
 
         <fileType
                 name="AngelScript"
-                implementationClass="com.github.sashi0034.angelintellij.language.AngelScriptFileType"
+                implementationClass="com.sarahshandcraftedentertainment.angelintellij.language.AngelScriptFileType"
                 fieldName="INSTANCE"
                 language="angelscript"
                 extensions="as"/>
 
         <fileType
                 name="AngelScript Predefined"
-                implementationClass="com.github.sashi0034.angelintellij.language.AngelScriptPredefinedFileType"
+                implementationClass="com.sarahshandcraftedentertainment.angelintellij.language.AngelScriptPredefinedFileType"
                 fieldName="INSTANCE"
                 language="angelscript-predefined"
                 extensions="predefined"/>
 
         <lang.braceMatcher language="angelscript"
-                           implementationClass="com.github.sashi0034.angelintellij.editor.AngelScriptBraceMatcher"/>
+                           implementationClass="com.sarahshandcraftedentertainment.angelintellij.editor.AngelScriptBraceMatcher"/>
 
         <lang.parserDefinition language="angelscript"
-                               implementationClass="com.github.sashi0034.angelintellij.language.AngelScriptParserDefinition"/>
+                               implementationClass="com.sarahshandcraftedentertainment.angelintellij.language.AngelScriptParserDefinition"/>
 
         <lang.syntaxHighlighterFactory language="angelscript"
-                                       implementationClass="com.github.sashi0034.angelintellij.editor.AngelScriptSyntaxHighlighterFactory"/>
+                                       implementationClass="com.sarahshandcraftedentertainment.angelintellij.editor.AngelScriptSyntaxHighlighterFactory"/>
 
         <!--        <lang.quoteHandler language="AngelScript"-->
-        <!--                           implementationClass="com.github.sashi0034.angelintellij.editor.AngelScriptQuoteHandler"/>-->
+        <!--                           implementationClass="com.sarahshandcraftedentertainment.angelintellij.editor.AngelScriptQuoteHandler"/>-->
     </extensions>
 
     <extensions defaultExtensionNs="com.redhat.devtools.lsp4ij">
         <server id="angelScriptLanguageServer"
                 name="AngelScript Language Server"
-                factoryClass="com.github.sashi0034.angelintellij.lsp.AngelScriptLanguageServerFactory">
+                factoryClass="com.sarahshandcraftedentertainment.angelintellij.lsp.AngelScriptLanguageServerFactory">
             <description><![CDATA[
             AngelScript Language Server (Preview)
             ]]>
@@ -53,7 +53,7 @@
 
         <semanticTokensColorsProvider
                 serverId="angelScriptLanguageServer"
-                class="com.github.sashi0034.angelintellij.lsp.AngelScriptSemanticTokensColorProvider"/>
+                class="com.sarahshandcraftedentertainment.angelintellij.lsp.AngelScriptSemanticTokensColorProvider"/>
 
         <fileNamePatternMapping patterns="*.as;as.predefined"
                                 serverId="angelScriptLanguageServer"
@@ -63,15 +63,15 @@
     <actions>
         <!-- Reuse VS Code action ids while waiting for standardization of LSP commands https://github.com/microsoft/language-server-protocol/issues/788 -->
 <!--        <action id="editor.action.triggerParameterHints"-->
-<!--                class="com.github.sashi0034.angelintellij.lsp.action.TriggerParameterHintsAction"/>-->
+<!--                class="action.lsp.com.sarahshandcraftedentertainment.angelintellij.TriggerParameterHintsAction"/>-->
 
 <!--        <action id="editor.action.triggerSuggest"-->
-<!--                class="com.github.sashi0034.angelintellij.lsp.action.TriggerSuggestAction"/>-->
+<!--                class="com.sarahshandcraftedentertainment.angelintellij.lsp.action.TriggerSuggestAction"/>-->
 
     </actions>
 
     <applicationListeners>
-        <!--FIXME        <listener class="com.github.sashi0034.angelintellij.listeners.MyApplicationActivationListener"-->
+        <!--FIXME        <listener class="listeners.com.sarahshandcraftedentertainment.angelintellij.MyApplicationActivationListener"-->
         <!--FIXME                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>-->
     </applicationListeners>
 </idea-plugin>

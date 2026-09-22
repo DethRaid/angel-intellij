@@ -1,8 +1,8 @@
 # AngelScript Language Server for IntelliJ
 
-![Build](https://github.com/sashi0034/angel-intellij/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/26645-angelscript-language-server.svg)](https://plugins.jetbrains.com/plugin/26645-angelscript-language-server)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/26645-angelscript-language-server.svg)](https://plugins.jetbrains.com/plugin/26645-angelscript-language-server)
+![Build](https://github.com/dethraid/angel-intellij/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/26645-angelscript-language-server.svg)](https://plugins.jetbrains.com/plugin/34428-angelscript)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/26645-angelscript-language-server.svg)](https://plugins.jetbrains.com/plugin/34428-angelscript)
 
 [//]: # (## Template ToDo list)
 
@@ -30,6 +30,8 @@
 
 ## Plugin description
 
+this is a fork of [sashi's intellij angelscript plugin](https://github.com/sashi0034/angel-intellij)
+
 <!-- Plugin description -->
 This plugin provides AngelScript language support for IntelliJ via [lsp4ij](https://github.com/redhat-developer/lsp4ij).
      
@@ -53,14 +55,14 @@ Note: This plugin is still in preview and under development.
   
 - Using JetBrains Marketplace:
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34428-angelscript/) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/34428-angelscript/versions) from JetBrains Marketplace and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
 
-  Download the [latest release](https://github.com/sashi0034/angel-intellij/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/dethraid/angel-intellij/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
