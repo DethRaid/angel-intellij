@@ -1,6 +1,8 @@
 package com.sarahshandcraftedentertainment.angelintellij.lsp;
 
+import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
+import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.psi.PsiFile;
 import com.redhat.devtools.lsp4ij.features.semanticTokens.SemanticTokensColorsProvider;
 import com.redhat.devtools.lsp4ij.features.semanticTokens.SemanticTokensHighlightingColors;
@@ -15,6 +17,25 @@ import java.util.List;
 
 public class AngelScriptSemanticTokensColorProvider implements SemanticTokensColorsProvider {
 
+    // Rider's C++ colors, used when the current color scheme defines them
+    private static final String CPP_NAMESPACE = "ReSharper.CPP_NAMESPACE_IDENTIFIER";
+    private static final String CPP_CLASS = "ReSharper.CPP_CLASS_IDENTIFIER";
+    private static final String CPP_STRUCT = "ReSharper.CPP_STRUCT_IDENTIFIER";
+    private static final String CPP_TYPEDEF = "ReSharper.CPP_TYPEDEF_IDENTIFIER";
+    private static final String CPP_TEMPLATE_PARAMETER = "ReSharper.CPP_TEMPLATE_PARAMETER_IDENTIFIER";
+    private static final String CPP_ENUM = "ReSharper.CPP_ENUM_IDENTIFIER";
+    private static final String CPP_ENUMERATOR = "ReSharper.CPP_ENUM_ENUMERATOR_IDENTIFIER";
+    private static final String CPP_GLOBAL_FUNCTION = "ReSharper.CPP_GLOBAL_FUNCTION_IDENTIFIER";
+    private static final String CPP_MEMBER_FUNCTION = "ReSharper.CPP_MEMBER_FUNCTION_IDENTIFIER";
+    private static final String CPP_STATIC_MEMBER_FUNCTION = "ReSharper.CPP_STATIC_MEMBER_FUNCTION_IDENTIFIER";
+    private static final String CPP_CLASS_FIELD = "ReSharper.CPP_CLASS_FIELD_IDENTIFIER";
+    private static final String CPP_STATIC_FIELD = "ReSharper.CPP_STATIC_FIELD_IDENTIFIER";
+    private static final String CPP_CONSTANT = "ReSharper.CPP_CONSTANT_IDENTIFIER";
+    private static final String CPP_LOCAL_VARIABLE = "ReSharper.CPP_LOCAL_VARIABLE_IDENTIFIER";
+    private static final String CPP_GLOBAL_VARIABLE = "ReSharper.CPP_GLOBAL_VARIABLE_IDENTIFIER";
+    private static final String CPP_PARAMETER = "ReSharper.CPP_PARAMETER_VARIABLE_IDENTIFIER";
+    private static final String CPP_MACRO = "ReSharper.CPP_PREPROCESSOR_MACRO_IDENTIFIER";
+    private static final String CPP_CONTROL_FLOW_KEYWORD = "ReSharper.CPP_CONTROL_FLOW_KEYWORD";
 
     @Override
     public @Nullable TextAttributesKey getTextAttributesKey(@NotNull String tokenType,
@@ -28,10 +49,10 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
                         SemanticTokenModifiers.Declaration,
                         SemanticTokenModifiers.Definition)) {
                     // with declaration, definition modifiers
-                    return SemanticTokensHighlightingColors.NAMESPACE_DECLARATION;
+                    return cpp(CPP_NAMESPACE, SemanticTokensHighlightingColors.NAMESPACE_DECLARATION);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.NAMESPACE;
+                return cpp(CPP_NAMESPACE, SemanticTokensHighlightingColors.NAMESPACE);
 
             // class: for identifiers that declare or reference a class type.
             case SemanticTokenTypes.Class:
@@ -39,72 +60,72 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
                         SemanticTokenModifiers.Declaration,
                         SemanticTokenModifiers.Definition)) {
                     // with declaration, definition modifiers
-                    return SemanticTokensHighlightingColors.CLASS_DECLARATION;
+                    return cpp(CPP_CLASS, SemanticTokensHighlightingColors.CLASS_DECLARATION);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.CLASS;
+                return cpp(CPP_CLASS, SemanticTokensHighlightingColors.CLASS);
 
             // enum: for identifiers that declare or reference an enumeration type.
             case SemanticTokenTypes.Enum:
-                return SemanticTokensHighlightingColors.ENUM;
+                return cpp(CPP_ENUM, SemanticTokensHighlightingColors.ENUM);
 
             // interface: for identifiers that declare or reference an interface type.
             case SemanticTokenTypes.Interface:
-                return SemanticTokensHighlightingColors.INTERFACE;
+                return cpp(CPP_CLASS, SemanticTokensHighlightingColors.INTERFACE);
 
             // struct: for identifiers that declare or reference a struct type.
             case SemanticTokenTypes.Struct:
-                return SemanticTokensHighlightingColors.STRUCT;
+                return cpp(CPP_STRUCT, SemanticTokensHighlightingColors.STRUCT);
 
             // typeParameter: for identifiers that declare or reference a type parameter.
             case SemanticTokenTypes.TypeParameter:
-                return SemanticTokensHighlightingColors.TYPE_PARAMETER;
+                return cpp(CPP_TEMPLATE_PARAMETER, SemanticTokensHighlightingColors.TYPE_PARAMETER);
 
             // type: for identifiers that declare or reference a type that is not covered above.
             case SemanticTokenTypes.Type:
-                return SemanticTokensHighlightingColors.TYPE;
+                return cpp(CPP_TYPEDEF, SemanticTokensHighlightingColors.TYPE);
 
             // parameter: for identifiers that declare or reference a function or method parameters.
             case SemanticTokenTypes.Parameter:
-                return SemanticTokensHighlightingColors.PARAMETER;
+                return cpp(CPP_PARAMETER, SemanticTokensHighlightingColors.PARAMETER);
 
             // variable: for identifiers that declare or reference a local or global variable.
             case SemanticTokenTypes.Variable:
                 if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Static)) {
                     if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Readonly)) {
                         // with static, readonly modifiers
-                        return SemanticTokensHighlightingColors.STATIC_READONLY_VARIABLE;
+                        return cpp(CPP_CONSTANT, SemanticTokensHighlightingColors.STATIC_READONLY_VARIABLE);
                     }
                     // with static readonly modifiers
-                    return SemanticTokensHighlightingColors.STATIC_VARIABLE;
+                    return cpp(CPP_GLOBAL_VARIABLE, SemanticTokensHighlightingColors.STATIC_VARIABLE);
                 }
                 if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Readonly)) {
                     // with readonly modifiers
-                    return SemanticTokensHighlightingColors.READONLY_VARIABLE;
+                    return cpp(CPP_LOCAL_VARIABLE, SemanticTokensHighlightingColors.READONLY_VARIABLE);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.VARIABLE;
+                return cpp(CPP_LOCAL_VARIABLE, SemanticTokensHighlightingColors.VARIABLE);
 
             // property: for identifiers that declare or reference a member property, member field, or member variable.
             case SemanticTokenTypes.Property:
                 if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Static)) {
                     if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Readonly)) {
                         // with static, readonly modifiers
-                        return SemanticTokensHighlightingColors.STATIC_READONLY_PROPERTY;
+                        return cpp(CPP_CONSTANT, SemanticTokensHighlightingColors.STATIC_READONLY_PROPERTY);
                     }
                     // with static readonly modifiers
-                    return SemanticTokensHighlightingColors.STATIC_PROPERTY;
+                    return cpp(CPP_STATIC_FIELD, SemanticTokensHighlightingColors.STATIC_PROPERTY);
                 }
                 if (hasTokenModifiers(tokenModifiers, SemanticTokenModifiers.Readonly)) {
                     // with readonly modifiers
-                    return SemanticTokensHighlightingColors.READONLY_PROPERTY;
+                    return cpp(CPP_CLASS_FIELD, SemanticTokensHighlightingColors.READONLY_PROPERTY);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.PROPERTY;
+                return cpp(CPP_CLASS_FIELD, SemanticTokensHighlightingColors.PROPERTY);
 
             // enum member: for identifiers that declare or reference an enumeration property, constant, or member.
             case SemanticTokenTypes.EnumMember:
-                return SemanticTokensHighlightingColors.ENUM_MEMBER;
+                return cpp(CPP_ENUMERATOR, SemanticTokensHighlightingColors.ENUM_MEMBER);
 
             // decorator: for identifiers that declare or reference decorators and annotations.
             case SemanticTokenTypes.Decorator:
@@ -119,16 +140,16 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
                 if (hasTokenModifiers(tokenModifiers,
                         SemanticTokenModifiers.DefaultLibrary)) {
                     // with defaultLibrary modifiers
-                    return SemanticTokensHighlightingColors.DEFAULT_LIBRARY_FUNCTION;
+                    return cpp(CPP_GLOBAL_FUNCTION, SemanticTokensHighlightingColors.DEFAULT_LIBRARY_FUNCTION);
                 }
                 if (hasTokenModifiers(tokenModifiers,
                         SemanticTokenModifiers.Declaration,
                         SemanticTokenModifiers.Definition)) {
                     // with declaration, definition modifiers
-                    return SemanticTokensHighlightingColors.FUNCTION_DECLARATION;
+                    return cpp(CPP_GLOBAL_FUNCTION, SemanticTokensHighlightingColors.FUNCTION_DECLARATION);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.FUNCTION;
+                return cpp(CPP_GLOBAL_FUNCTION, SemanticTokensHighlightingColors.FUNCTION);
 
             // method: for identifiers that declare a member function or method.
             case SemanticTokenTypes.Method: {
@@ -136,21 +157,21 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
                         SemanticTokenModifiers.Declaration,
                         SemanticTokenModifiers.Definition)) {
                     // with declaration, definition modifiers
-                    return SemanticTokensHighlightingColors.METHOD_DECLARATION;
+                    return cpp(CPP_MEMBER_FUNCTION, SemanticTokensHighlightingColors.METHOD_DECLARATION);
                 }
                 if (hasTokenModifiers(tokenModifiers,
                         SemanticTokenModifiers.Static)) {
                     // with static modifiers
-                    return SemanticTokensHighlightingColors.STATIC_METHOD;
+                    return cpp(CPP_STATIC_MEMBER_FUNCTION, SemanticTokensHighlightingColors.STATIC_METHOD);
                 }
                 // with other modifiers
-                return SemanticTokensHighlightingColors.METHOD;
+                return cpp(CPP_MEMBER_FUNCTION, SemanticTokensHighlightingColors.METHOD);
             }
 
             // macro: for identifiers that declare a macro.
             case SemanticTokenTypes.Macro:
             case "directive": // unique to angel-lsp
-                return SemanticTokensHighlightingColors.MACRO;
+                return cpp(CPP_MACRO, SemanticTokensHighlightingColors.MACRO);
 
             // label: for identifiers that declare a label.
             case "label":
@@ -171,6 +192,9 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
             case "builtin": // unique to angel-lsp
                 return SemanticTokensHighlightingColors.KEYWORD;
 
+            case "controlKeyword": // unique to angel-lsp
+                return cpp(CPP_CONTROL_FLOW_KEYWORD, SemanticTokensHighlightingColors.KEYWORD);
+
             // number: for tokens that represent a number literal.
             case SemanticTokenTypes.Number:
                 return SemanticTokensHighlightingColors.NUMBER;
@@ -189,6 +213,12 @@ public class AngelScriptSemanticTokensColorProvider implements SemanticTokensCol
 
         }
         return null;
+    }
+
+    private static TextAttributesKey cpp(String cppKeyName, TextAttributesKey fallback) {
+        TextAttributesKey cppKey = TextAttributesKey.find(cppKeyName);
+        TextAttributes attributes = EditorColorsManager.getInstance().getGlobalScheme().getAttributes(cppKey);
+        return attributes != null && !attributes.isEmpty() ? cppKey : fallback;
     }
 
     protected boolean hasTokenModifiers(List<String> tokenModifiers, String... checkedTokenModifiers) {
