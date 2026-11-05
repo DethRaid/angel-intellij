@@ -13,6 +13,7 @@
         <!--FIXME        <toolWindow factoryClass="toolWindow.com.sarahshandcraftedentertainment.angelintellij.MyToolWindowFactory" id="MyToolWindow"/>-->
 
         <postStartupActivity implementation="com.sarahshandcraftedentertainment.angelintellij.ValidationStartupActivity"/>
+        <postStartupActivity implementation="com.sarahshandcraftedentertainment.angelintellij.lsp.AngelScriptSemanticTokensStartupActivity"/>
 
         <fileType
                 name="AngelScript"
